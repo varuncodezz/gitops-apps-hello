@@ -37,7 +37,7 @@ spec:
       steps {
         container('docker') {
           // Build new image
-          sh "until docker ps; do sleep 3; done && docker build -t brainupgrade/hello:${env.GIT_COMMIT} ."
+          sh "sleep 30s && docker build -t brainupgrade/hello:${env.GIT_COMMIT} ."
           // Publish new image
           sh "docker login --username $DOCKERHUB_CREDS_USER --password $DOCKERHUB_CREDS_PASSWORD && docker push brainupgrade/hello:${env.GIT_COMMIT}"
         }
