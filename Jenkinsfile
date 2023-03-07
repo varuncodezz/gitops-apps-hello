@@ -20,6 +20,12 @@ spec:
     command:
     - cat
     tty: true
+    startupProbe:
+      tcpSocket:
+        port: 2376
+      periodSeconds: 10
+      successThreshold: 1
+      failureThreshold: 10  
   - name: tools
     image: argoproj/argo-cd-ci-builder
     command:
