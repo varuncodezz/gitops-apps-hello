@@ -40,9 +40,6 @@ spec:
   stages {
 
     stage('Build') {
-      environment {
-        DOCKERHUB_CREDS = credentials('dockerhub')
-      }
       steps {
         container('docker') {
           withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
