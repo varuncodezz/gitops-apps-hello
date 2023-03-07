@@ -9,7 +9,10 @@ kind: Pod
 spec:
   containers:
   - name: dind
-    image: docker:20-dind
+    image: brainupgrade/docker:20-dind
+    env:
+    - name: DOCKER_TLS_CERTDIR
+      value: ''
     securityContext:
       privileged: true
   - name: docker
@@ -22,7 +25,7 @@ spec:
     tty: true
     startupProbe:
       tcpSocket:
-        port: 2376
+        port: 2375
       periodSeconds: 10
       successThreshold: 1
       failureThreshold: 10  
