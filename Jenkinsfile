@@ -45,7 +45,7 @@ spec:
           withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
             sh "docker login -u ${USERNAME} -p ${PASSWORD}"
             sh "docker build -t brainupgrade/hello:${env.GIT_COMMIT} ."
-            sh "docker push brainupgrade/hello:${env.BUILD_ID}"
+            sh "docker push brainupgrade/hello:${env.GIT_COMMIT}"
           }
         }
       }
@@ -86,7 +86,7 @@ spec:
           dir("hello") {
             sh "cd ./prod && kustomize edit set image brainupgrade/hello:${env.GIT_COMMIT}"
             sh "git commit -am 'Publish new version' && git push || echo 'no changes'"
-            sh "docker tag brainupgrade/hello:${env.BUILD_ID} brainupgrade/hello:latest"
+            sh "docker tag brainupgrade/hello:${env.GIT_COMMIT} brainupgrade/hello:latest"
             sh "docker push brainupgrade/hello:latest"
           }
         }
