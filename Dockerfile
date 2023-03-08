@@ -8,5 +8,6 @@ FROM gcr.io/distroless/base-debian11
 WORKDIR /
 COPY --from=builder /hello /hello
 ENV PORT 80
+ENV ENVIRONMENT e2e
 USER nonroot:nonroot
 CMD ["/hello"]
