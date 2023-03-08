@@ -7,7 +7,7 @@ RUN CGO_ENABLED=0 GOOS=linux go build -o /hello
 FROM gcr.io/distroless/base-debian11
 WORKDIR /
 COPY --from=builder /hello /hello
-ENV PORT 80
+ENV PORT 8080
 ENV ENVIRONMENT e2e
 USER nonroot:nonroot
 CMD ["/hello"]
