@@ -60,8 +60,8 @@ spec:
           sh "git clone https://$GIT_CREDS_USR:$GIT_CREDS_PSW@github.com/brainupgrade-in/gitops-k8s-apps.git"
           sh "git config --global user.email 'ci@ci.com'"
 
-          dir("hello") {
-            sh "cd ./e2e && kustomize edit set image brainupgrade/hello:${env.GIT_COMMIT}"
+          dir("gitops-k8s-apps") {
+            sh "cd ./hello/e2e && kustomize edit set image brainupgrade/hello:${env.GIT_COMMIT}"
             sh "git commit -am 'Publish new version' && git push || echo 'no changes'"
           }
         }
@@ -71,8 +71,8 @@ spec:
       steps {
         input message:'Approve deployment to UAT?'
         container('tools') {
-          dir("hello") {
-            sh "cd ./uat && kustomize edit set image brainupgrade/hello:${env.GIT_COMMIT}"
+          dir("gitops-k8s-apps") {
+            sh "cd ./hello/uat && kustomize edit set image brainupgrade/hello:${env.GIT_COMMIT}"
             sh "git commit -am 'Publish new version' && git push || echo 'no changes'"
           }
         }
@@ -83,8 +83,8 @@ spec:
       steps {
         input message:'Approve deployment to PROD?'
         container('tools') {
-          dir("hello") {
-            sh "cd ./prod && kustomize edit set image brainupgrade/hello:${env.GIT_COMMIT}"
+          dir("gitops-k8s-apps") {
+            sh "cd ./hello/prod && kustomize edit set image brainupgrade/hello:${env.GIT_COMMIT}"
             sh "git commit -am 'Publish new version' && git push || echo 'no changes'"
             sh "docker tag brainupgrade/hello:${env.GIT_COMMIT} brainupgrade/hello:latest"
             sh "docker push brainupgrade/hello:latest"
