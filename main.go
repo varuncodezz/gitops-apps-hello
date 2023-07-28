@@ -46,8 +46,12 @@ func hello(w http.ResponseWriter, r *http.Request) {
 	log.Printf("Serving request: %s", r.URL.Path)
 	host, _ := os.Hostname()
 	environment := os.Getenv("ENVIRONMENT")
+	build_id := os.Getenv("BUILD_ID")
+	commit_id := os.Getenv("GIT_COMMIT_ID")
 	fmt.Fprintf(w, "Hello from BrainUpgrade!\n")
-	fmt.Fprintf(w, "Version: 1.0.0\n")
+	fmt.Fprintf(w, "Feature: Initial\n")
+	fmt.Fprintf(w, "BUILD_ID: %s\n", build_id)
+	fmt.Fprintf(w, "GIT_COMMIT_ID: %s\n", commit_id)
 	fmt.Fprintf(w, "Hostname: %s\n", host)
 	fmt.Fprintf(w, "Environment: %s\n", environment)
 }
