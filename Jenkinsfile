@@ -44,7 +44,7 @@ spec:
         container('docker') {
           withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
             sh "docker login -u ${USERNAME} -p ${PASSWORD}"
-            sh "docker build --build-arg='BUILD_ID=${env.BUILD_ID},GIT_COMMIT_ID=${env.GIT_COMMIT}' -t brainupgrade/hello:${env.GIT_COMMIT} ."
+            sh "docker build --build-arg='BUILD_ID=${env.BUILD_ID}' --build-arg='GIT_COMMIT_ID=${env.GIT_COMMIT}' -t brainupgrade/hello:${env.GIT_COMMIT} ."
             sh "docker push brainupgrade/hello:${env.GIT_COMMIT}"
           }
         }
