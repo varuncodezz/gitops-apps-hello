@@ -9,6 +9,7 @@ pipeline {
             sh "cd gitops-apps-hello"
             sh "docker login -u ${USERNAME} -p ${PASSWORD}"
             sh "docker build --build-arg='BUILD_ID=${env.BUILD_ID}'  -t brainupgrade/hello:${env.BUILD_ID} ."
+            sh "docker push brainupgrade/hello:${env.BUILD_ID}"
             sh "kubectl set image deploy hello hello=brainupgrade/hello:${env.BUILD_ID}"
           }
         }
