@@ -8,27 +8,14 @@ apiVersion: v1
 kind: Pod
 spec:
   containers:
-  - name: dind
-    image: brainupgrade/docker:20-dind
-    env:
-    - name: DOCKER_TLS_CERTDIR
-      value: ''
-    securityContext:
-      privileged: true
   - name: docker
     env:
     - name: DOCKER_HOST
-      value: 127.0.0.1
+      value: tcp://mtvlabcicdu1.mtvlabcicd.svc:2375
     image: docker
     command:
     - cat
     tty: true
-    startupProbe:
-      tcpSocket:
-        port: 2375
-      periodSeconds: 10
-      successThreshold: 1
-      failureThreshold: 10  
   - name: tools
     image: argoproj/argo-cd-ci-builder
     command:
