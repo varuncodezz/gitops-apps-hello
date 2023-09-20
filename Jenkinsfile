@@ -46,6 +46,7 @@ spec:
         GIT_CREDS = credentials('bu-github-credentials')
       }
       steps {
+        input message:'Approve deployment to E2E?'
         container('tools') {
           sh "git clone https://$GIT_CREDS_USR:$GIT_CREDS_PSW@github.com/brainupgrade-in/gitops-k8s-apps.git"
           sh "git config --global user.email 'ci@ci.com'"
