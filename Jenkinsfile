@@ -39,6 +39,9 @@ spec:
     }
 
     stage('Deploy E2E') {
+      when {
+          branch 'main'
+      }      
       environment {
         GIT_CREDS = credentials('bu-github-credentials')
       }
@@ -55,6 +58,9 @@ spec:
       }
     }
     stage('Deploy to UAT') {
+      when {
+          branch 'main'
+      }      
       steps {
         input message:'Approve deployment to UAT?'
         container('tools') {
@@ -67,6 +73,9 @@ spec:
     }
 
     stage('Deploy to Prod') {
+      when {
+          branch 'main'
+      }      
       steps {
         input message:'Approve deployment to PROD?'
         container('tools') {
@@ -78,6 +87,9 @@ spec:
       }
     }
     stage('final') {
+      when {
+          branch 'main'
+      }      
       steps {
         container('docker') {
           withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
