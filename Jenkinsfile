@@ -11,7 +11,7 @@ spec:
   - name: docker
     env:
     - name: DOCKER_HOST
-      value: tcp://mtvlabcicda1.mtvlabcicd.svc:2375
+      value: tcp://docker:2375
     image: docker
     command:
     - cat
