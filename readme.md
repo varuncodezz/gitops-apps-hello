@@ -1,5 +1,5 @@
 # Build Status
-[![Build Status](https://mtvlabcicda1-app.brainupgrade.in/buildStatus/icon?job=gitops-apps-hello-multi-branch%2Fmain&build=1)](https://mtvlabcicda1-app.brainupgrade.in/job/gitops-apps-hello-multi-branch/job/main/1/console)
+[![Build Status](https://mtvlabcicda1-app.brainupgrade.in/buildStatus/icon?job=gitops-apps-hello%2Fmain)](https://mtvlabcicda1-app.brainupgrade.in/job/gitops-apps-hello/job/main/)
 
 # RBAC
 kubectl create role jenkins -n jenkins --verb=create,list,get,watch,delete --resource=pods,pods/log,pods/exec,deploy,svc
