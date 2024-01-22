@@ -30,9 +30,9 @@ spec:
       steps {
         container('docker') {
           withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+            sh "docker login -u ${USERNAME} -p ${PASSWORD} "
             sh "docker build --build-arg='BUILD_ID=${env.BUILD_ID}' --build-arg='GIT_COMMIT_ID=${env.GIT_COMMIT}' -t brainupgrade/hello:${env.GIT_COMMIT} ."
-            sh "docker login -u ${USERNAME} -p ${PASSWORD} registry-1.docker.io"
-            sh "docker push brainupgrade/hello:${env.GIT_COMMIT} registry-1.docker.io"
+            sh "docker push brainupgrade/hello:${env.GIT_COMMIT}"
           }
         }
       }
@@ -94,9 +94,9 @@ spec:
       steps {
         container('docker') {
           withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+            sh "docker login -u ${USERNAME} -p ${PASSWORD} "
             sh "docker tag brainupgrade/hello:${env.GIT_COMMIT} brainupgrade/hello:latest"
-            sh "docker login -u ${USERNAME} -p ${PASSWORD} registry-1.docker.io"
-            sh "docker push brainupgrade/hello:latest  registry-1.docker.io"
+            sh "docker push brainupgrade/hello:latest "
           }
         }
       }
