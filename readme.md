@@ -20,21 +20,23 @@ This repository, part of the `brainupgrade-in` organization, demonstrates a basi
 ## Getting Started
 
 1. **Clone the Repository:**
+```
 git clone https://github.com/brainupgrade-in/gitops-apps-hello.git
 cd gitops-apps-hello
-
+```
 2. **Build and Push the Docker Image:**
 (Replace `<your-docker-hub>` with your Docker Hub username)
+```
 docker build -t <your-docker-hub>/gitops-hello-app:v1 .
 docker push <your-docker-hub>/gitops-hello-app:v1
-
+```
 3. **Deploy to Kubernetes:**
 Update the image in `k8s/deployment.yaml` with your Docker Hub image.
-kubectl apply -f k8s/
+`kubectl apply -f k8s/`
 
 4. **Verify Deployment:**
 Check the status of your deployment with:
-kubectl get all
+`kubectl get all`
 
 ## Contributing
 
@@ -55,11 +57,8 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 Project Link: [https://github.com/brainupgrade-in/gitops-apps-hello](https://github.com/brainupgrade-in/gitops-apps-hello)
 
 
-
-# Build Status
-
-[![Build Status](https://mtvlabcicda1-app.brainupgrade.in/buildStatus/icon?job=gitops-apps-hello%2Fmain)](https://mtvlabcicda1-app.brainupgrade.in/job/gitops-apps-hello/job/main/)
-
 # RBAC
+```
 kubectl create role jenkins -n jenkins --verb=create,list,get,watch,delete --resource=pods,pods/log,pods/exec,deploy,svc
 kubectl create rolebinding jenkins -n jenkins --role=jenkins --serviceaccount=jenkins/default
+```
