@@ -12,11 +12,8 @@ on:
 
 env:
   # Use docker.io for Docker Hub if empty
-  REGISTRY: docker.io
-  # github.repository as <account>/<repo>
   IMAGE_NAME: brainupgrade/gitops-apps-hello
   IMAGE_TAG: ${{ github.ref }}
-
 
 jobs:
   build:
