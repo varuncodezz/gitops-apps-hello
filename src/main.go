@@ -55,4 +55,5 @@ func hello(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Hostname: %s\n", host)
 	fmt.Fprintf(w, "Environment: %s\n", environment)
 	fmt.Fprintf(w, "Feature X by Rajesh: %\n")
+	fmt.Fprintf(w, "Feature Z by Rajesh: %\n")
 }
